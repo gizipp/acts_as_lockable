@@ -1,8 +1,6 @@
 # ActsAsLockable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/acts_as_lockable`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem built to allowing records to be lockable. It's lock your records and let'em untouched.
 
 ## Installation
 
@@ -20,9 +18,36 @@ Or install it yourself as:
 
     $ gem install acts_as_lockable
 
+#### Run your migrations for the desired models
+
+Run:
+
+``` shell
+rails generate migration AddIsLockedToLockers is_locked:boolean
+```
+
+and now you have a migration
+
+``` ruby
+class AddIsLockedToLockers < ActiveRecord::Migration
+  def change
+    add_column :lockers, :is_locked, :boolean
+  end
+end
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+#### In your model:
+
+``` ruby
+class Locker < ActiveRecord::Base
+  acts_as_lockable
+
+  # ...
+end
+```
+
 
 ## Development
 
@@ -32,7 +57,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/acts_as_lockable. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gizipp/acts_as_lockable. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
