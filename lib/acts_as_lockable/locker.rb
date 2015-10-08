@@ -1,24 +1,20 @@
 module ActsAsLockable
   module Locker
     def is_locked?
-      if self.is_locked.nil? || self.is_locked == false
-        return false
-      else 
-        return true
-      end
+      self.locks.size > 0
     end
 
     def lock
-      self.update_column(:is_locked, true)
+      self.locks.create
     end
 
     def unlock
-      self.update_column(:is_locked, false)
+      self.locks.clear
     end
 
     private
       def check_locked
-        raise false if self.is_locked?
+        return false if self.is_locked?
       end
   end
 end

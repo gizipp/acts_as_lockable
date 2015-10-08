@@ -7,8 +7,14 @@ ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => ":me
 ActiveRecord::Schema.define(:version => 1) do
   create_table :lockers do |t|
     t.string :name
-    t.boolean :is_locked
   end
+
+  create_table :locks do |t|
+    t.integer :locked_id
+    t.string :locked_type
+  end
+
+  add_index :locks, :locked_id
 end
 
 class Locker < ActiveRecord::Base

@@ -17,9 +17,20 @@ end
 
 describe "Unlocked Locker" do
   it "should be return unlocked" do
-    a = Locker.create(name: "Unlocked Locker", is_locked: true)
+    a = Locker.create(name: "Unlocked Locker")
+    a.lock
     a.unlock
     expect(a.reload.is_locked?).to eq(false)
+  end
+end
+
+describe "To Be Modified Locked Locker" do
+  it "should be return unlocked" do
+    a = Locker.create(name: "Locked Locker")
+    a.lock
+    a.reload
+    a.name = "To Be Modified Locked Locker"
+    expect(a.save).to eq(false)
   end
 end
 
