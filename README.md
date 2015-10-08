@@ -18,27 +18,18 @@ Or install it yourself as:
 
     $ gem install acts_as_lockable
 
-#### Run your migrations for the desired models
+#### Database Migrations
 
 Run:
 
 ``` shell
-rails generate migration AddIsLockedToLockers is_locked:boolean
-```
-
-and now you have a migration
-
-``` ruby
-class AddIsLockedToLockers < ActiveRecord::Migration
-  def change
-    add_column :lockers, :is_locked, :boolean
-  end
-end
+rails generate acts_as_lockable:migration
+rake db:migrate
 ```
 
 ## Usage
 
-#### In your model:
+#### Lockable Models
 
 ``` ruby
 class Locker < ActiveRecord::Base
@@ -47,7 +38,15 @@ class Locker < ActiveRecord::Base
   # ...
 end
 ```
+#### Example
 
+``` ruby
+lovely_locker = Locker.create
+lovely_locker.lock
+lovely_locker.unlock
+lovely_locker.is_locked?
+
+```
 
 ## Development
 
