@@ -1,13 +1,13 @@
 require "acts_as_lockable/version"
-require "acts_as_lockable/lock"
 require "acts_as_lockable/locker"
+require "acts_as_lockable/lockable"
 
 class ActiveRecord::Base
   def self.acts_as_lockable(options={})
 
-    has_many :locks, as: :locked
+    has_one :locker, as: :locked
     before_validation :check_locked
     
-    include ActsAsLockable::Locker
+    include ActsAsLockable::Lockable
   end
 end
