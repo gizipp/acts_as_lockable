@@ -1,6 +1,8 @@
 # ActsAsLockable
 
-This gem built to allowing records to be lockable. It's lock your records and let'em untouched.
+[UNMAINTAINED] This gem built to allowing records to be lockable. It's lock your records and let'em untouched.
+
+[WARNING] This gem is deprecated and unmaintained. DWYOR!
 
 ## Installation
 
